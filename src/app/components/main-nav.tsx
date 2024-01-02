@@ -1,14 +1,15 @@
-import Link from "next/link"
+/* eslint-disable @typescript-eslint/space-before-function-paren */
+import Link from 'next/link'
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
 
 export function MainNav({
   className,
   ...props
-}: React.HTMLAttributes<HTMLElement>) {
+}: React.HTMLAttributes<HTMLElement>): JSX.Element {
   return (
     <nav
-      className={cn("flex items-center space-x-4 lg:space-x-6", className)}
+      className={cn('flex items-center space-x-4 lg:space-x-6', className)}
       {...props}
     >
       <Link
