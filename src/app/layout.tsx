@@ -1,8 +1,11 @@
+import { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
+
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
+import NextAuthProvider from '@/providers/next-auth-provider'
 
 export const metadata: Metadata = {
   title: 'Life Monitor',
@@ -14,11 +17,9 @@ const fontSans = FontSans({
   variable: '--font-sans'
 })
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
-
-export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
+export default function RootLayout({
+  children
+}: PropsWithChildren): JSX.Element {
   return (
     <html lang="en">
       <body
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <NextAuthProvider>{children}</NextAuthProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,9 +1,28 @@
+import { getServerSession } from 'next-auth'
+
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
+import { authOptions } from '@/lib/auth'
+import prisma from '@/lib/prisma'
+
 import { ActionCommandMenu } from './components/action-command-menu'
 import { MainNav } from './components/main-nav'
+import { LoginButton } from './components/login-button.client'
+import { LogoutButton } from './components/logout-button.client'
 
-export default function Home(): JSX.Element {
+async function getUser(email: string) {
+  const user = await prisma.user.findUnique({
+    where: {
+      email
+    }
+  })
+
+  return user
+}
+
+export default async function Home(): Promise<JSX.Element> {
+  const session = await getServerSession(authOptions)
+  const user = await getUser(session?.user?.email! ?? '')
+
   return (
     <>
       <div className="border-b">
@@ -15,8 +34,16 @@ export default function Home(): JSX.Element {
         </div>
       </div>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <Button>New Button</Button>
         <ActionCommandMenu />
+        {!user ? (
+          <LoginButton />
+        ) : (
+          <>
+            <h3>Current User is {user.email}</h3>
+            <LogoutButton />
+          </>
+        )}
+        {/* <h1>Current User is {user?.email}</h1> */}
       </main>
     </>
   )
