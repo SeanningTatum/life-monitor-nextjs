@@ -5,8 +5,8 @@ import {
   updateTask,
   deleteCompletedTasks,
   toggleTaskCompletion
-} from './checklist'
-import type { Checklist, Task } from './checklist.types'
+} from '.'
+import type { Checklist, Task } from './index.types'
 
 const checklist: Checklist = {
   id: '1',

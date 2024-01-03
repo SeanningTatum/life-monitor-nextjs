@@ -5,19 +5,8 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
-import { ActionCommandMenu } from './components/action-command-menu'
 import { MainNav } from './components/main-nav'
 import { AuthButton } from './components/auth-button.client'
-
-async function getUser(email: string) {
-  const user = await prisma.user.findUnique({
-    where: {
-      email
-    }
-  })
-
-  return user
-}
 
 export default async function Home(): Promise<JSX.Element> {
   const session = await getServerSession(authOptions)
@@ -38,7 +27,6 @@ export default async function Home(): Promise<JSX.Element> {
         </div>
       </header>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <ActionCommandMenu />
       </main>
     </>
   )
