@@ -9,7 +9,7 @@ import NextAuthProvider from '@/providers/next-auth-provider'
 
 export const metadata: Metadata = {
   title: 'Life Monitor',
-  description: 'Some description'
+  description: 'Enhance your productivity and well-being with Life-Monitor - your all-in-one companion for seamless organization and focus. Juggle tasks effortlessly with a personal Kanban board, amplify study sessions with a dedicated page featuring curated music, and capture thoughts on the go with our intuitive note-taking feature. Elevate your daily routine with Life-Monitor – where organization meets inspiration',
 }
 
 const fontSans = FontSans({
