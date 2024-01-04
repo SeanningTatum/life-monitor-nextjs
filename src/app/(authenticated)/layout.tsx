@@ -1,32 +1,23 @@
 import { PropsWithChildren } from 'react'
-import type { Metadata } from 'next'
-import { Inter as FontSans } from 'next/font/google'
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
-import './globals.css'
 
-import { cn } from '@/lib/utils'
-import { ThemeProvider } from '@/providers/theme-provider'
-import NextAuthProvider from '@/providers/next-auth-provider'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { MainNav } from './components/main-nav'
-import { AuthButton } from '@/components/auth-button.client'
-import { authOptions } from '@/lib/auth'
+import NextAuthProvider from '@/providers/next-auth-provider'
+import { ThemeProvider } from '@/providers/theme-provider'
 
-export const metadata: Metadata = {
-  title: 'Life Monitor',
-  description: 'Enhance your productivity and well-being with Life-Monitor - your all-in-one companion for seamless organization and focus. Juggle tasks effortlessly with a personal Kanban board, amplify study sessions with a dedicated page featuring curated music, and capture thoughts on the go with our intuitive note-taking feature. Elevate your daily routine with Life-Monitor – where organization meets inspiration',
-}
+import { DashboardNav } from './components/dashboard-nav'
+import { cn } from '@/lib/utils'
+
+import { Inter as FontSans } from 'next/font/google'
+import { AuthButton } from '@/components/auth-button.client'
 
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans'
 })
 
-export default async function RootLayout({
+export default function DashboardLayout({
   children
-}: PropsWithChildren): Promise<JSX.Element> {
-
+}: PropsWithChildren): JSX.Element {
 
   return (
     <html lang="en">
@@ -46,7 +37,7 @@ export default async function RootLayout({
             <div className="min-h-screen flex flex-col h-full">
               <header className='sticky top-0 z-50 w-full border-b border-border/80 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
                 <div className="flex h-16 items-center px-4">
-                  <MainNav className="mx-6" />
+                  <DashboardNav className="mx-6" />
                   <div className="ml-auto flex items-center space-x-4">
                     <ThemeToggle />
                     <AuthButton />
@@ -62,5 +53,7 @@ export default async function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+
+
   )
 }
