@@ -1,6 +1,6 @@
 import { TypographyH2 } from "@/components/ui/typography";
 import { redirectIfUnauthenticated } from "@/lib/auth";
-import UserChecklist from "./components/user-checklist";
+import UserChecklist from "./components/user-checklist.client";
 
 export default async function HomePage() {
   await redirectIfUnauthenticated();

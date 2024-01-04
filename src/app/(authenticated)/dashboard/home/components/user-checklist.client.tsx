@@ -8,7 +8,6 @@ const Checklist = dynamic(() => import('@/components/checklist/index.client'), {
   loading: () => <Skeleton className="h-[200px] w-full" />
 });
 
-
 function UserChecklist() {
   const [checklist, actions] = useChecklist({
     id: 'checklist',

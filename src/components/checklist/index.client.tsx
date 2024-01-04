@@ -4,12 +4,12 @@ import { DragDropContext } from 'react-beautiful-dnd';
 
 import { Card, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
-import { useChecklistState, withChecklistState } from './state';
-import { StrictModeDroppable } from './strict-mode-droppable.client';
 import DraggableTasks from './draggable-tasks.client';
 import { Separator } from '../ui/separator';
-import { cn } from '@/lib/utils';
-import AddTask from './add-task';
+
+import AddTask from './add-task.client';
+import { useChecklistState, withChecklistState } from './state';
+import { StrictModeDroppable } from './strict-mode-droppable.client';
 
 function Checklist(): JSX.Element {
   const { onDeleteCompletedTasks, onDragEnd, checklist, currentTaskId } =
@@ -36,7 +36,7 @@ function Checklist(): JSX.Element {
           </Button>
         </div>
 
-        <Separator className={cn('my-2')} />
+        <Separator className="my-2" />
 
         <StrictModeDroppable
           key={checklist.id}
@@ -53,15 +53,13 @@ function Checklist(): JSX.Element {
               <DraggableTasks />
               {droppableProvided.placeholder}
               {!currentTaskId && (
-                <div className='mt-2'>
+                <div className='mt-1'>
                   <AddTask />
                 </div>
               )}
             </div>
           )}
         </StrictModeDroppable>
-
-
       </Card>
     </DragDropContext>
   );
