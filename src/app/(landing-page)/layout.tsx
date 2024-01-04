@@ -1,17 +1,14 @@
 import { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
-import './globals.css'
+import '../globals.css'
 
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
 import NextAuthProvider from '@/providers/next-auth-provider'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { MainNav } from './components/main-nav'
+import { MainNav } from '../components/main-nav'
 import { AuthButton } from '@/components/auth-button.client'
-import { authOptions } from '@/lib/auth'
 
 export const metadata: Metadata = {
   title: 'Life Monitor',
@@ -26,7 +23,6 @@ const fontSans = FontSans({
 export default async function RootLayout({
   children
 }: PropsWithChildren): Promise<JSX.Element> {
-
 
   return (
     <html lang="en">

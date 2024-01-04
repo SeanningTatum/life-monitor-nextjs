@@ -2,17 +2,16 @@
 
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { Card, CardContent, CardTitle } from '../ui/card';
+import { Card, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { useChecklistState, withChecklistState } from './state';
-import dynamic from 'next/dynamic';
 import { StrictModeDroppable } from './strict-mode-droppable.client';
 import DraggableTasks from './draggable-tasks.client';
 import { Separator } from '../ui/separator';
 import { cn } from '@/lib/utils';
 import AddTask from './add-task';
 
-export function Checklist(): JSX.Element {
+function Checklist(): JSX.Element {
   const { onDeleteCompletedTasks, onDragEnd, checklist, currentTaskId } =
     useChecklistState();
 

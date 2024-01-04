@@ -1,10 +1,13 @@
 'use client';
 
+import { Skeleton } from "@/components/ui/skeleton";
 import useChecklist from "@/hooks/use-checklist";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
-const Checklist = dynamic(() => import('@/components/checklist/index.client'))
+const Checklist = dynamic(() => import('@/components/checklist/index.client'), {
+  loading: () => <Skeleton className="h-[200px] w-full" />
+});
+
 
 function UserChecklist() {
   const [checklist, actions] = useChecklist({
@@ -31,17 +34,15 @@ function UserChecklist() {
   });
 
   return (
-    <Suspense fallback={<></>}>
-      <Checklist
-        checklist={checklist}
-        onAddTask={(task) => actions.addTask({ id: Date.now().toString(), title: task, completed: false })}
-        onClickCheckbox={actions.toggleTaskCompletion}
-        onDeleteCompletedTasks={() => actions.deleteCompletedTasks()}
-        onDeleteTask={actions.deleteTask}
-        onEditTask={actions.updateTask}
-        onTaskMoved={actions.moveTask}
-      />
-    </Suspense>
+    <Checklist
+      checklist={checklist}
+      onAddTask={(task) => actions.addTask({ id: Date.now().toString(), title: task, completed: false })}
+      onClickCheckbox={actions.toggleTaskCompletion}
+      onDeleteCompletedTasks={() => actions.deleteCompletedTasks()}
+      onDeleteTask={actions.deleteTask}
+      onEditTask={actions.updateTask}
+      onTaskMoved={actions.moveTask}
+    />
   )
 }
 

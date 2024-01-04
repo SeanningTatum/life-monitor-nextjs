@@ -10,6 +10,8 @@ import { cn } from '@/lib/utils'
 import { Inter as FontSans } from 'next/font/google'
 import { AuthButton } from '@/components/auth-button.client'
 
+import '../globals.css'
+
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans'
@@ -18,12 +20,11 @@ const fontSans = FontSans({
 export default function DashboardLayout({
   children
 }: PropsWithChildren): JSX.Element {
-
   return (
     <html lang="en">
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'min-h-screen bg-background font-sans ',
           fontSans.variable
         )}
       >

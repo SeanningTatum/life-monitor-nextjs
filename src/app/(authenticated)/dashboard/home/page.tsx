@@ -1,14 +1,9 @@
 import { TypographyH2 } from "@/components/ui/typography";
-import { authOptions } from "@/lib/auth";
-import { redirectIfUnauthenticated } from "@/lib/utils"
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { redirectIfUnauthenticated } from "@/lib/auth";
 import UserChecklist from "./components/user-checklist";
-import { ThemeToggle } from "@/components/theme-toggle";
-
 
 export default async function HomePage() {
-  await redirectIfUnauthenticated(authOptions);
+  await redirectIfUnauthenticated();
 
   return (
     <div className="flex justify-between w-full">

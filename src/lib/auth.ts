@@ -1,9 +1,9 @@
-import { NextApiHandler } from 'next'
 import { NextAuthOptions } from 'next-auth'
-import NextAuth from 'next-auth/next'
+import NextAuth, { getServerSession } from 'next-auth/next'
 import GithubProvider from 'next-auth/providers/github'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import prisma from '@/lib/prisma'
+import { redirect } from 'next/navigation'
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -15,6 +15,15 @@ export const authOptions: NextAuthOptions = {
   ],
   adapter: PrismaAdapter(prisma)
 }
+
+export async function redirectIfUnauthenticated(url?: string): Promise<void> {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    redirect(url ?? '/');
+  }
+}
+
 
 export const authHandler = NextAuth(authOptions)
 
