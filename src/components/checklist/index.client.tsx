@@ -1,12 +1,16 @@
 'use client';
 
-const DragDropContext = dynamic(() => import('react-beautiful-dnd').then(resp => ({ default: resp.DragDropContext })))
+import { DragDropContext } from 'react-beautiful-dnd';
 
-import { Card } from '../ui/card';
+import { Card, CardContent, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
-import { Separator } from '@radix-ui/react-dropdown-menu';
 import { useChecklistState, withChecklistState } from './state';
 import dynamic from 'next/dynamic';
+import { StrictModeDroppable } from './strict-mode-droppable.client';
+import DraggableTasks from './draggable-tasks.client';
+import { Separator } from '../ui/separator';
+import { cn } from '@/lib/utils';
+import AddTask from './add-task';
 
 export function Checklist(): JSX.Element {
   const { onDeleteCompletedTasks, onDragEnd, checklist, currentTaskId } =
@@ -14,13 +18,13 @@ export function Checklist(): JSX.Element {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Card>
+      <Card className="p-4">
         <div
-          className='flex flex-row items-center justify-between px-4 gap-1 mt-2'
+          className='flex flex-row items-center justify-between'
         >
-          <h5 className="flex-1 text-lg">
+          <CardTitle className="flex-1 text-lg">
             {checklist.title}
-          </h5>
+          </CardTitle>
 
           <Button
             type="button"
@@ -33,32 +37,32 @@ export function Checklist(): JSX.Element {
           </Button>
         </div>
 
-        <Separator className='my-2' />
+        <Separator className={cn('my-2')} />
 
-        {/* <StrictModeDroppable
+        <StrictModeDroppable
           key={checklist.id}
           droppableId={checklist.id}
           direction="vertical"
         >
           {(droppableProvided) => (
-            <div>
-              <Flex
-                direction="column"
-                gap="2"
-                {...droppableProvided.droppableProps}
-                ref={droppableProvided.innerRef}
-              >
-                <DraggableTasks />
-                {droppableProvided.placeholder}
-                {!currentTaskId && (
-                  <Box mt="2">
-                    <AddTask />
-                  </Box>
-                )}
-              </Flex>
+            <div
+              className='flex flex-col gap-2'
+              {...droppableProvided.droppableProps}
+              ref={droppableProvided.innerRef}
+
+            >
+              <DraggableTasks />
+              {droppableProvided.placeholder}
+              {!currentTaskId && (
+                <div className='mt-2'>
+                  <AddTask />
+                </div>
+              )}
             </div>
           )}
-        </StrictModeDroppable> */}
+        </StrictModeDroppable>
+
+
       </Card>
     </DragDropContext>
   );

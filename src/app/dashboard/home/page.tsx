@@ -14,7 +14,7 @@ export default async function HomePage() {
         <TypographyH2>"Successful people are not gifted; they just work hard, then succeed on purpose." —G.K. Nielson</TypographyH2>
       </div>
 
-      <div>
+      <div className="w-[300px]">
         <UserChecklist />
       </div>
     </div>
