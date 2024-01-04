@@ -1,13 +1,17 @@
 'use client'
+
 import { useMemo } from 'react';
+import { ContextMenuTrigger } from '@radix-ui/react-context-menu';
 
 import { cn } from '@/lib/utils';
+
+import { ContextMenu } from '../ui/context-menu';
+import { Checkbox } from '../ui/checkbox';
+
+import TaskContextMenu from './task-context-menu.client';
+import TaskForm from './task-form.client';
 import { useChecklistState } from './state';
 import { DraggableTaskProps } from './types';
-import { ContextMenu } from '../ui/context-menu';
-import { ContextMenuTrigger } from '@radix-ui/react-context-menu';
-import { Card, CardContent } from '../ui/card';
-import { Checkbox } from '../ui/checkbox';
 
 function Task(props: DraggableTaskProps): JSX.Element {
   const {
@@ -24,17 +28,17 @@ function Task(props: DraggableTaskProps): JSX.Element {
     [props.id, checklist.tasks]
   );
 
-  // if (currentTaskId === props.id) {
-  //   return (
-  //     <TaskForm
-  //       initialTaskName={title}
-  //       dismiss={onDismissEditTask}
-  //       onSubmitForm={(taskName) =>
-  //         onSubmitEditTask(props.id, { title: taskName })
-  //       }
-  //     />
-  //   );
-  // }
+  if (currentTaskId === props.id) {
+    return (
+      <TaskForm
+        initialTaskName={title}
+        dismiss={onDismissEditTask}
+        onSubmitForm={(taskName) =>
+          onSubmitEditTask(props.id, { title: taskName })
+        }
+      />
+    );
+  }
 
   return (
     <ContextMenu>
@@ -64,7 +68,7 @@ function Task(props: DraggableTaskProps): JSX.Element {
         </div>
       </ContextMenuTrigger>
 
-      {/* <TaskContextMenu id={props.id} completed={completed} /> */}
+      <TaskContextMenu id={props.id} completed={completed} />
     </ContextMenu>
   );
 }

@@ -28,14 +28,13 @@ function TaskForm(props: TaskFormProps): JSX.Element {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      taskName: "",
+      taskName: props.initialTaskName ?? '',
     },
   })
 
   const onSubmitForm = useCallback(
     (values: z.infer<typeof formSchema>) => {
       const trimmed = values.taskName.trim();
-      console.log('in here', values)
 
       if (!trimmed) return;
 
