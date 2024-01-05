@@ -1,4 +1,4 @@
-import { NextAuthOptions } from 'next-auth'
+import { NextAuthOptions, Session } from 'next-auth'
 import NextAuth, { getServerSession } from 'next-auth/next'
 import GithubProvider from 'next-auth/providers/github'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
@@ -13,15 +13,33 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET ?? ''
     })
   ],
-  adapter: PrismaAdapter(prisma)
+  adapter: PrismaAdapter(prisma),
+  callbacks: {
+    jwt({ token, account, user }) {
+      if (account) {
+        token.accessToken = account.access_token
+        token.id = user?.id
+      }
+      return token
+    },
+    session({ session, user }) {
+      if (user) {
+        session.user.id = user.id ?? '';
+      }
+
+      return session;
+    },
+  }
 }
 
-export async function redirectIfUnauthenticated(url?: string): Promise<void> {
+export async function redirectIfUnauthenticated(url?: string): Promise<Session> {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    redirect(url ?? '/');
+    return redirect(url ?? '/');
   }
+
+  return session;
 }
 
 

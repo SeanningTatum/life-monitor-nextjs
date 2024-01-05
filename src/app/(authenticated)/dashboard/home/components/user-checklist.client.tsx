@@ -1,35 +1,28 @@
 'use client';
 
+import dynamic from "next/dynamic";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import useChecklist from "@/hooks/use-checklist";
-import dynamic from "next/dynamic";
+import type { Checklist, Task } from "@prisma/client";
 
 const Checklist = dynamic(() => import('@/components/checklist/index.client'), {
   loading: () => <Skeleton className="h-[200px] w-full" />
 });
 
-function UserChecklist() {
+interface Props {
+  checklist: Checklist & {
+    tasks: Task[];
+  };
+}
+
+function UserChecklist(props: Props) {
   const [checklist, actions] = useChecklist({
-    id: 'checklist',
-    taskOrder: ['task-1', 'task-2', 'task-3'],
-    tasks: {
-      'task-1': {
-        id: 'task-1',
-        title: 'Super Boss',
-        completed: false,
-      },
-      'task-2': {
-        id: 'task-2',
-        title: 'Super Boss 2',
-        completed: false,
-      },
-      'task-3': {
-        id: 'task-3',
-        title: 'Super Boss 3',
-        completed: false,
-      }
-    },
-    title: 'Work Checklist'
+    ...props.checklist,
+    title: props.checklist.name,
+    tasks: Object.fromEntries(
+      props.checklist.tasks.map(task => [task.id, { ...task }])
+    ),
   });
 
   return (

@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 import { Metadata } from 'next'
 
 import { AuthButton } from '@/components/auth-button.client'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { ThemeToggle } from '@/components/theme-toggle.client'
 import NextAuthProvider from '@/providers/next-auth-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 import { cn } from '@/lib/utils'

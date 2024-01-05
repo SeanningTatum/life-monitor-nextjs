@@ -50,7 +50,7 @@ function Task(props: DraggableTaskProps): JSX.Element {
           className={cn(
             props.snapshot?.isDragging && '',
             // styles.container
-            'border-border border-2 rounded-lg p-2.5'
+            'border-border border rounded-lg p-2.5'
           )}
           data-testid="checklist-task"
         >

@@ -6,7 +6,7 @@ import '../globals.css'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
 import NextAuthProvider from '@/providers/next-auth-provider'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { ThemeToggle } from '@/components/theme-toggle.client'
 import { MainNav } from '../components/main-nav'
 import { AuthButton } from '@/components/auth-button.client'
 

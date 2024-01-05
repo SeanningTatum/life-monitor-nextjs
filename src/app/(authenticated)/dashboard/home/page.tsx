@@ -1,9 +1,48 @@
 import { TypographyH2 } from "@/components/ui/typography";
 import { redirectIfUnauthenticated } from "@/lib/auth";
 import UserChecklist from "./components/user-checklist.client";
+import prisma from '@/lib/prisma'
+import { } from '@prisma/client'
+
+async function getChecklistCollection(userId: string) {
+  const checklists = await prisma.user.findUnique({
+    where: {
+      id: userId
+    }
+  }).Checklist({
+    include: {
+      tasks: true,
+    }
+  })
+
+  return checklists;
+}
+
+
+async function createChecklist(userId: string) {
+  const newChecklist = await prisma.checklist.create({
+    data: {
+      name: 'First Task List',
+      createdBy: userId,
+    },
+    include: {
+      tasks: true,
+    }
+  });
+
+  return newChecklist;
+}
 
 export default async function HomePage() {
-  await redirectIfUnauthenticated();
+  const session = await redirectIfUnauthenticated();
+
+  // TEMP:- Get first task as we don't have any feature to create a new task list
+  // or shift through them
+  let [checklist] = await getChecklistCollection(session.user.id) ?? [];
+
+  if (!checklist) {
+    checklist = await createChecklist(session.user.id);
+  }
 
   return (
     <div className="flex justify-between w-full">
@@ -12,7 +51,7 @@ export default async function HomePage() {
       </div>
 
       <div className="w-[300px]">
-        <UserChecklist />
+        <UserChecklist checklist={checklist} />
       </div>
     </div>
   )
