@@ -7,7 +7,8 @@ module.exports = {
   extends: [
     'next/core-web-vitals',
     'standard-with-typescript',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
+    "@kensho-technologies/eslint-config",
   ],
   overrides: [
     {
@@ -29,7 +30,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/space-before-function-paren': 'off',
     '@typescript-eslint/indent': 'off',
-    'react/prop-types': [true, { ignore: 'className' }],
+    // 'react/prop-types': [true, { ignore: 'className' }],
     '@typescript-eslint/consistent-type-definitions': 'off'
   }
 }
