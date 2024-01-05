@@ -48,6 +48,15 @@ interface FormFieldState {
   error?: FieldError | undefined;
 }
 
+type FormItemContextValue = {
+  id: string
+}
+
+const FormItemContext = React.createContext<FormItemContextValue>(
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  {} as FormItemContextValue
+)
+
 const useFormField = (): FormFieldState => {
   const fieldContext = React.useContext(FormFieldContext)
   const itemContext = React.useContext(FormItemContext)
@@ -71,14 +80,6 @@ const useFormField = (): FormFieldState => {
   }
 }
 
-type FormItemContextValue = {
-  id: string
-}
-
-const FormItemContext = React.createContext<FormItemContextValue>(
-  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  {} as FormItemContextValue
-)
 
 const FormItem = React.forwardRef<
   HTMLDivElement,

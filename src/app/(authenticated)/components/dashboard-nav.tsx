@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/space-before-function-paren */
-
 'use client'
 
 import Link from 'next/link'

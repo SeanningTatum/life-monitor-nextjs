@@ -1,23 +1,21 @@
 'use client';
 
 import dynamic from "next/dynamic";
-import { Checklist} from "@prisma/client";
-import type { Task } from "@prisma/client";
+
+import type { ChecklistWithTasks } from "../types";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import useChecklist from "@/hooks/use-checklist";
 
-const Checklist = dynamic(async () => await import('@/components/checklist/index.client'), {
+const Checklist = dynamic(() => import('@/components/checklist/index.client'), {
   loading: () => <Skeleton className="h-[200px] w-full" />
 });
 
 interface Props {
-  checklist: Checklist & {
-    tasks: Task[];
-  };
+  checklist: ChecklistWithTasks;
 }
 
-function UserChecklist(props: Props) {
+function UserChecklist(props: Props): JSX.Element {
   const [checklist, actions] = useChecklist({
     ...props.checklist,
     title: props.checklist.name,

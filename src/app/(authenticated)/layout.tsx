@@ -10,15 +10,12 @@ import NextAuthProvider from '@/providers/next-auth-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 import { cn } from '@/lib/utils'
 
-
-
 import '../globals.css'
 
 export const metadata: Metadata = {
   title: 'Life Monitor | Dashboard',
   description: '',
 }
-
 
 const fontSans = FontSans({
   subsets: ['latin'],
