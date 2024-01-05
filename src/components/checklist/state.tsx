@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import type { DropResult } from 'react-beautiful-dnd';
-import { Task } from '@/lib/checklist/index.types';
+import { Task } from '@/lib/checklist/types';
 
 import { ChecklistProps, ChecklistState } from './types';
 

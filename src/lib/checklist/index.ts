@@ -2,7 +2,7 @@
 import { produce } from 'immer'
 import * as R from 'ramda'
 
-import type { Checklist, Task } from './index.types'
+import type { Checklist, Task } from './types'
 
 const moveTask = R.curry((from: number, to: number, checklist: Checklist) =>
   produce(checklist, (draft) => {

@@ -1,4 +1,4 @@
-import { Checklist, Task } from '@/lib/checklist/index.types';
+import { Checklist, Task } from '@/lib/checklist/types';
 import {
   DraggableProvided,
   DraggableStateSnapshot,

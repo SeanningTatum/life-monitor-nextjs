@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 import { Cross1Icon, PaperPlaneIcon } from '@radix-ui/react-icons';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -58,7 +58,7 @@ function TaskForm(props: TaskFormProps): JSX.Element {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Task Name" {...field} autoFocus />
+                  <Input data-testid="task-name-input" placeholder="Task Name" {...field} autoFocus />
                 </FormControl>
                 <FormMessage />
               </FormItem>

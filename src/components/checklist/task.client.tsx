@@ -11,7 +11,7 @@ import { Checkbox } from '../ui/checkbox';
 import TaskContextMenu from './task-context-menu.client';
 import TaskForm from './task-form.client';
 import { useChecklistState } from './state';
-import { DraggableTaskProps } from './types';
+import type { DraggableTaskProps } from './types';
 
 function Task(props: DraggableTaskProps): JSX.Element {
   const {

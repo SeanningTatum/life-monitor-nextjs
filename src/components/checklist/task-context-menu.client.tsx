@@ -1,6 +1,6 @@
 import { ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "../ui/context-menu";
 import { useChecklistState } from "./state";
-import { TaskContextMenuProps } from "./types";
+import type { TaskContextMenuProps } from "./types";
 
 function TaskContextMenu(props: TaskContextMenuProps): JSX.Element {
   const { onDeleteTask, onClickEditTask, onClickCheckbox } =
@@ -8,7 +8,6 @@ function TaskContextMenu(props: TaskContextMenuProps): JSX.Element {
 
   return (
     <ContextMenuContent
-      style={{ width: '200px' }}
       className="w-[200px]"
       data-testid="task-context-menu"
     >
@@ -20,7 +19,6 @@ function TaskContextMenu(props: TaskContextMenuProps): JSX.Element {
         Edit
       </ContextMenuItem>
       <ContextMenuItem
-
         inset
         onClick={() => onClickCheckbox(props.id)}
         data-testid="toggle-task-context-menu-button"
