@@ -3,11 +3,10 @@ import { ChecklistWithTasks } from './types';
 import prisma from '@/lib/prisma'
 
 export async function getChecklistCollection(userId: string): Promise<ChecklistWithTasks[]> {
-  const checklists = await prisma.user.findUnique({
+  const checklists = await prisma.checklist.findMany({
     where: {
-      id: userId
-    }
-  }).Checklist({
+      createdBy: userId,
+    },
     include: {
       tasks: true,
     }
