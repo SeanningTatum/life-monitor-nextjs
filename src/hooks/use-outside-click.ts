@@ -4,12 +4,14 @@ function useOutsideClickListener(ref: React.RefObject<HTMLElement>, handler: (e:
   useEffect(
     () => {
       const listener = (event: any): void => {
+        if (event == null || ref.current == null) return;
         // Do nothing if clicking ref's element or descendent elements
-        if (!ref.current || ref.current.contains(event.target)) {
+        if (ref.current.contains(event.target)) {
           return;
         }
         handler(event);
       };
+
       document.addEventListener('mousedown', listener);
       document.addEventListener('touchstart', listener);
       return () => {

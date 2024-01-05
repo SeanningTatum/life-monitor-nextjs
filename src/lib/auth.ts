@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: off */
 import { type NextAuthOptions, type Session } from 'next-auth'
 import NextAuth, { getServerSession } from 'next-auth/next'
 import GithubProvider from 'next-auth/providers/github'
@@ -17,16 +18,14 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   callbacks: {
     jwt({ token, account, user }) {
-      if (account) {
+      if (account !== null) {
         token.accessToken = account.access_token
         token.id = user?.id
       }
       return token
     },
     session({ session, user }) {
-      if (user) {
-        session.user.id = user.id ?? '';
-      }
+      session.user.id = user.id ?? '';
 
       return session;
     },
@@ -36,7 +35,7 @@ export const authOptions: NextAuthOptions = {
 export async function redirectIfUnauthenticated(url?: string): Promise<Session> {
   const session = await getServerSession(authOptions)
 
-  if (!session) {
+  if (session == null) {
     return redirect(url ?? '/');
   }
 
