@@ -7,7 +7,7 @@ import { MainNav } from './components/main-nav'
 
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
-import NextAuthProvider from '@/providers/next-auth-provider'
+import { NextAuthProvider } from '@/providers/next-auth-provider'
 import { ThemeToggle } from '@/components/theme-toggle.client'
 import { AuthButton } from '@/components/auth-button.client'
 

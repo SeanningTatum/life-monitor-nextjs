@@ -25,6 +25,7 @@ export function DashboardNav({
     >
       {ROUTES.map(route => (
         <Link
+          key={route.href}
           href={route.href}
           className={cn("text-sm font-medium transition-colors hover:text-primary", pathname !== route.href && 'text-muted-foreground')}
         >
