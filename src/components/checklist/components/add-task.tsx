@@ -2,9 +2,10 @@
 
 import { PlusIcon } from '@radix-ui/react-icons';
 
-import { useChecklistState } from './state';
-import { Button } from '../ui/button';
-import TaskForm from './task-form.client';
+import { Button } from '@/components/ui/button';
+import TaskForm from './task-form';
+
+import { useChecklistState } from '../state';
 
 function AddTask(): JSX.Element {
   const { onClickAddTask, isAdding, onDismissAddTask, onSubmitNewTask } =

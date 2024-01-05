@@ -1,5 +1,5 @@
-import { Checklist, Task } from '@/lib/checklist/types';
-import {
+import type { Checklist, Task } from '@/lib/checklist/types';
+import type {
   DraggableProvided,
   DraggableStateSnapshot,
   DropResult,

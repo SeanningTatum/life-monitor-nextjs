@@ -5,13 +5,14 @@ import { ContextMenuTrigger } from '@radix-ui/react-context-menu';
 
 import { cn } from '@/lib/utils';
 
-import { ContextMenu } from '../ui/context-menu';
-import { Checkbox } from '../ui/checkbox';
+import { ContextMenu } from '../../ui/context-menu';
+import { Checkbox } from '../../ui/checkbox';
 
-import TaskContextMenu from './task-context-menu.client';
-import TaskForm from './task-form.client';
-import { useChecklistState } from './state';
-import type { DraggableTaskProps } from './types';
+import TaskContextMenu from './task-context-menu';
+import TaskForm from './task-form';
+
+import { useChecklistState } from '../state';
+import type { DraggableTaskProps } from '../types';
 
 function Task(props: DraggableTaskProps): JSX.Element {
   const {
@@ -33,7 +34,7 @@ function Task(props: DraggableTaskProps): JSX.Element {
       <TaskForm
         initialTaskName={title}
         dismiss={onDismissEditTask}
-        onSubmitForm={(taskName) =>
+        onSubmitForm={(taskName: string) =>
           onSubmitEditTask(props.id, { title: taskName })
         }
       />
