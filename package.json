@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest",
+    "test": "vitest --watch=false",
     "postinstall": "prisma generate",
     "vercel-build": "prisma db push && next build",
     "prepare": "husky install"
