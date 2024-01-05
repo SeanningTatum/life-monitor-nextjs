@@ -6,7 +6,6 @@ module.exports = {
   },
   extends: [
     "next/core-web-vitals",
-    "standard-with-typescript",
     "plugin:react/recommended",
     "@kensho-technologies/eslint-config",
   ],
@@ -36,5 +35,6 @@ module.exports = {
     "react/destructuring-assignment": "off",
     "@typescript-eslint/consistent-type-assertions": "off",
     "react/jsx-no-constructed-context-values": "warn",
+    "@typescript-eslint/promise-function-async": "off"
   },
 };
