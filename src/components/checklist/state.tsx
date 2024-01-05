@@ -2,9 +2,11 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import type { DropResult } from 'react-beautiful-dnd';
-import { Task } from '@/lib/checklist/types';
 
-import { ChecklistProps, ChecklistState } from './types';
+import { type ChecklistProps, type ChecklistState } from './types';
+
+import { type Task } from '@/lib/checklist/types';
+
 
 const ChecklistStateContext = createContext({} as ChecklistState);
 

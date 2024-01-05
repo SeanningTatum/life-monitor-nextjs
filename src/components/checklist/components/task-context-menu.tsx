@@ -1,6 +1,7 @@
-import { ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "../ui/context-menu";
-import { useChecklistState } from "./state";
-import type { TaskContextMenuProps } from "./types";
+import { useChecklistState } from "../state";
+import type { TaskContextMenuProps } from "../types";
+
+import { ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "@/components/ui/context-menu";
 
 function TaskContextMenu(props: TaskContextMenuProps): JSX.Element {
   const { onDeleteTask, onClickEditTask, onClickCheckbox } =

@@ -2,8 +2,9 @@
 
 import { Draggable } from 'react-beautiful-dnd';
 
-import { useChecklistState } from './state';
-import Task from './task.client';
+import { useChecklistState } from '../state';
+
+import Task from './task';
 
 
 function DraggableTasks(): JSX.Element[] {

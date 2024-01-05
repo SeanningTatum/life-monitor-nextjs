@@ -1,9 +1,10 @@
-import { Checklist, Task } from '@/lib/checklist/types';
-import {
+import type {
   DraggableProvided,
   DraggableStateSnapshot,
   DropResult,
 } from 'react-beautiful-dnd';
+
+import type { Checklist, Task } from '@/lib/checklist/types';
 
 export interface ChecklistProps {
   onAddTask: (taskName: string) => void;

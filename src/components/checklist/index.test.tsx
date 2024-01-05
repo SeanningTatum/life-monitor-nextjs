@@ -1,8 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import { act, cleanup, fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi, vitest } from 'vitest'
+
 import ChecklistView from './index.client';
-import { ChecklistProps } from './types';
+import { type ChecklistProps } from './types';
 
 afterEach(cleanup);
 
@@ -73,7 +74,7 @@ describe('Checklist', () => {
       );
 
       const addTaskButton = await findByTestId('add-task-button');
-      act(() => addTaskButton.click());
+      act(() => { addTaskButton.click(); });
 
       const addTaskForm = await findByTestId('task-form');
       expect(addTaskForm).toBeTruthy();
@@ -91,7 +92,7 @@ describe('Checklist', () => {
       );
 
       const addTaskButton = await findByTestId('add-task-button');
-      await act(() => addTaskButton.click());
+      await act(() => { addTaskButton.click(); });
 
       const taskNameInput = await findByTestId('task-name-input');
       expect(taskNameInput).toBeTruthy();
@@ -116,7 +117,7 @@ describe('Checklist', () => {
       );
 
       const addTaskButton = await findByTestId('add-task-button');
-      await act(() => addTaskButton.click());
+      await act(() => { addTaskButton.click(); });
 
       const taskNameInput = await findByTestId('task-name-input');
       expect(taskNameInput).toBeTruthy();
@@ -142,7 +143,7 @@ describe('Checklist', () => {
     );
 
     const [checkbox] = await findAllByTestId('checklist-checkbox');
-    await act(() => checkbox.click());
+    await act(() => { checkbox.click(); });
 
     expect(onClickCheckbox).toBeCalledWith('task-1');
   });
@@ -156,7 +157,7 @@ describe('Checklist', () => {
     );
 
     const removeDoneButton = await findByTestId('remove-done-button');
-    await act(() => removeDoneButton.click());
+    await act(() => { removeDoneButton.click(); });
 
     expect(onClickCheckbox).toBeCalled();
   });
@@ -193,7 +194,7 @@ describe('Checklist', () => {
 
       const completeTaskContextMenuButton = await findByTestId("toggle-task-context-menu-button")
 
-      await act(() => completeTaskContextMenuButton.click());
+      await act(() => { completeTaskContextMenuButton.click(); });
 
       expect(onClickCheckbox).toBeCalledWith('task-1');
     });

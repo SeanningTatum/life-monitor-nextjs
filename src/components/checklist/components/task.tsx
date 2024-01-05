@@ -3,15 +3,17 @@
 import { useMemo } from 'react';
 import { ContextMenuTrigger } from '@radix-ui/react-context-menu';
 
+
+import { ContextMenu } from '../../ui/context-menu';
+import { Checkbox } from '../../ui/checkbox';
+import { useChecklistState } from '../state';
+import type { DraggableTaskProps } from '../types';
+
+import TaskContextMenu from './task-context-menu';
+import TaskForm from './task-form';
+
+
 import { cn } from '@/lib/utils';
-
-import { ContextMenu } from '../ui/context-menu';
-import { Checkbox } from '../ui/checkbox';
-
-import TaskContextMenu from './task-context-menu.client';
-import TaskForm from './task-form.client';
-import { useChecklistState } from './state';
-import type { DraggableTaskProps } from './types';
 
 function Task(props: DraggableTaskProps): JSX.Element {
   const {
@@ -33,8 +35,8 @@ function Task(props: DraggableTaskProps): JSX.Element {
       <TaskForm
         initialTaskName={title}
         dismiss={onDismissEditTask}
-        onSubmitForm={(taskName) =>
-          onSubmitEditTask(props.id, { title: taskName })
+        onSubmitForm={(taskName: string) =>
+          { onSubmitEditTask(props.id, { title: taskName }); }
         }
       />
     );
@@ -59,7 +61,7 @@ function Task(props: DraggableTaskProps): JSX.Element {
               data-testid="checklist-checkbox"
               className="rounded-full"
               checked={completed}
-              onClick={() => onClickCheckbox(props.id)}
+              onClick={() => { onClickCheckbox(props.id); }}
             />
             <span className={cn(completed && 'line-through')}>
               {title}

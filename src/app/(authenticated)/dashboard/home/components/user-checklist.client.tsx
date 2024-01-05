@@ -2,21 +2,20 @@
 
 import dynamic from "next/dynamic";
 
+import type { ChecklistWithTasks } from "../types";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import useChecklist from "@/hooks/use-checklist";
-import type { Checklist, Task } from "@prisma/client";
 
 const Checklist = dynamic(() => import('@/components/checklist/index.client'), {
   loading: () => <Skeleton className="h-[200px] w-full" />
 });
 
 interface Props {
-  checklist: Checklist & {
-    tasks: Task[];
-  };
+  checklist: ChecklistWithTasks;
 }
 
-function UserChecklist(props: Props) {
+function UserChecklist(props: Props): JSX.Element {
   const [checklist, actions] = useChecklist({
     ...props.checklist,
     title: props.checklist.name,
@@ -28,9 +27,9 @@ function UserChecklist(props: Props) {
   return (
     <Checklist
       checklist={checklist}
-      onAddTask={(task) => actions.addTask({ id: Date.now().toString(), title: task, completed: false })}
+      onAddTask={(task) => { actions.addTask({ id: Date.now().toString(), title: task, completed: false }); }}
       onClickCheckbox={actions.toggleTaskCompletion}
-      onDeleteCompletedTasks={() => actions.deleteCompletedTasks()}
+      onDeleteCompletedTasks={() => { actions.deleteCompletedTasks(); }}
       onDeleteTask={actions.deleteTask}
       onEditTask={actions.updateTask}
       onTaskMoved={actions.moveTask}

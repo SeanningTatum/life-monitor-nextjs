@@ -1,5 +1,8 @@
-import { PropsWithChildren } from 'react'
-import { Metadata } from 'next'
+import { type PropsWithChildren } from 'react'
+import { type Metadata } from 'next'
+import { Inter as FontSans } from 'next/font/google'
+
+import { DashboardNav } from './components/dashboard-nav'
 
 import { AuthButton } from '@/components/auth-button.client'
 import { ThemeToggle } from '@/components/theme-toggle.client'
@@ -7,17 +10,12 @@ import NextAuthProvider from '@/providers/next-auth-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 import { cn } from '@/lib/utils'
 
-import { DashboardNav } from './components/dashboard-nav'
-
-import { Inter as FontSans } from 'next/font/google'
-
 import '../globals.css'
 
 export const metadata: Metadata = {
   title: 'Life Monitor | Dashboard',
   description: '',
 }
-
 
 const fontSans = FontSans({
   subsets: ['latin'],

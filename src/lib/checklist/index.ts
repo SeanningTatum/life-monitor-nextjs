@@ -61,7 +61,7 @@ const toggleTaskCompletion = R.curry(
         completed: !kanbanBoard.tasks[taskId].completed
       },
       kanbanBoard
-    ) as Checklist
+    ) 
 )
 
 export {

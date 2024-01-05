@@ -1,13 +1,14 @@
-import { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import '../globals.css'
+
+import { MainNav } from './components/main-nav'
 
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
 import NextAuthProvider from '@/providers/next-auth-provider'
 import { ThemeToggle } from '@/components/theme-toggle.client'
-import { MainNav } from '../components/main-nav'
 import { AuthButton } from '@/components/auth-button.client'
 
 export const metadata: Metadata = {
