@@ -1,4 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
+import type { Checklist, Task } from './types'
+
 import {
   moveTask,
   addTask,
@@ -6,8 +9,7 @@ import {
   updateTask,
   deleteCompletedTasks,
   toggleTaskCompletion
-} from '.'
-import type { Checklist, Task } from './types'
+} from './index'
 
 const checklist: Checklist = {
   id: '1',

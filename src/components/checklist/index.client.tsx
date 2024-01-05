@@ -4,9 +4,9 @@ import { DragDropContext } from 'react-beautiful-dnd';
 
 import { Card, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
-import DraggableTasks from './components/draggable-tasks';
 import { Separator } from '../ui/separator';
 
+import DraggableTasks from './components/draggable-tasks';
 import AddTask from './components/add-task';
 import { useChecklistState, withChecklistState } from './state';
 import { StrictModeDroppable } from './components/strict-mode-droppable';

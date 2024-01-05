@@ -1,12 +1,13 @@
 'use client';
 
 import dynamic from "next/dynamic";
+import { Checklist} from "@prisma/client";
+import type { Task } from "@prisma/client";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import useChecklist from "@/hooks/use-checklist";
-import type { Checklist, Task } from "@prisma/client";
 
-const Checklist = dynamic(() => import('@/components/checklist/index.client'), {
+const Checklist = dynamic(async () => await import('@/components/checklist/index.client'), {
   loading: () => <Skeleton className="h-[200px] w-full" />
 });
 
@@ -28,9 +29,9 @@ function UserChecklist(props: Props) {
   return (
     <Checklist
       checklist={checklist}
-      onAddTask={(task) => actions.addTask({ id: Date.now().toString(), title: task, completed: false })}
+      onAddTask={(task) => { actions.addTask({ id: Date.now().toString(), title: task, completed: false }); }}
       onClickCheckbox={actions.toggleTaskCompletion}
-      onDeleteCompletedTasks={() => actions.deleteCompletedTasks()}
+      onDeleteCompletedTasks={() => { actions.deleteCompletedTasks(); }}
       onDeleteTask={actions.deleteTask}
       onEditTask={actions.updateTask}
       onTaskMoved={actions.moveTask}

@@ -7,13 +7,14 @@ import { useForm } from "react-hook-form"
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import * as z from "zod"
 
-import useOutsideClickListener from '@/hooks/use-outside-click';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form';
 import { Button } from '../ui/button';
 
-import { TaskFormProps } from './types';
+import { type TaskFormProps } from './types';
+
+import useOutsideClickListener from '@/hooks/use-outside-click';
 
 const formSchema = z.object({
   taskName: z.string()

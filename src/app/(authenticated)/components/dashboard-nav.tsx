@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/space-before-function-paren */
+
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
-import { usePathname } from 'next/navigation'
 
 const ROUTES = [
   { name: 'Home', href: '/dashboard/home' },

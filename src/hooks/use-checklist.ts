@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+
 import * as cl from '@/lib/checklist/index';
 
 interface UseChecklistActions {
@@ -21,32 +22,32 @@ function useChecklist(
 
   const addTask = useCallback(
     (...args: Parameters<typeof cl.addTask>) =>
-      setChecklist(cl.addTask(...args)),
+      { setChecklist(cl.addTask(...args)); },
     []
   );
   const deleteCompletedTasks = useCallback(
     (...args: Parameters<typeof cl.deleteCompletedTasks>) =>
-      setChecklist(cl.deleteCompletedTasks(...args)),
+      { setChecklist(cl.deleteCompletedTasks(...args)); },
     []
   );
   const deleteTask = useCallback(
     (...args: Parameters<typeof cl.deleteTask>) =>
-      setChecklist(cl.deleteTask(...args)),
+      { setChecklist(cl.deleteTask(...args)); },
     []
   );
   const moveTask = useCallback(
     (...args: Parameters<typeof cl.moveTask>) =>
-      setChecklist(cl.moveTask(...args)),
+      { setChecklist(cl.moveTask(...args)); },
     []
   );
   const updateTask = useCallback(
     (...args: Parameters<typeof cl.updateTask>) =>
-      setChecklist(cl.updateTask(...args)),
+      { setChecklist(cl.updateTask(...args)); },
     []
   );
   const toggleTaskCompletion = useCallback(
     (...args: Parameters<typeof cl.toggleTaskCompletion>) =>
-      setChecklist(cl.toggleTaskCompletion(...args)),
+      { setChecklist(cl.toggleTaskCompletion(...args)); },
     []
   );
 

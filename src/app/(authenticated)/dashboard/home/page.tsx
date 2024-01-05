@@ -1,6 +1,7 @@
+import UserChecklist from "./components/user-checklist.client";
+
 import { TypographyH2 } from "@/components/ui/typography";
 import { redirectIfUnauthenticated } from "@/lib/auth";
-import UserChecklist from "./components/user-checklist.client";
 import prisma from '@/lib/prisma'
 import { } from '@prisma/client'
 
