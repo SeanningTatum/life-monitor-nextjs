@@ -35,6 +35,7 @@ module.exports = {
     "react/destructuring-assignment": "off",
     "@typescript-eslint/consistent-type-assertions": "off",
     "react/jsx-no-constructed-context-values": "warn",
-    "@typescript-eslint/promise-function-async": "off"
+    "@typescript-eslint/promise-function-async": "off",
+    "@typescript-eslint/no-explicit-any": "warn"
   },
 };

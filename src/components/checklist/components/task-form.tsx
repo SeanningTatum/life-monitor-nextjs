@@ -7,13 +7,12 @@ import { useForm } from "react-hook-form"
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import * as z from "zod"
 
-import { Card } from '../ui/card';
-import { Input } from '../ui/input';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form';
-import { Button } from '../ui/button';
+import { type TaskFormProps } from '../types';
 
-import { type TaskFormProps } from './types';
-
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Button } from '@/components/ui/button';
 import useOutsideClickListener from '@/hooks/use-outside-click';
 
 const formSchema = z.object({
@@ -42,7 +41,7 @@ function TaskForm(props: TaskFormProps): JSX.Element {
       props.onSubmitForm(trimmed);
       props.dismiss();
     },
-    []
+    [props]
   );
 
   useOutsideClickListener(formRef, props.dismiss);
