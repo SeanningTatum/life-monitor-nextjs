@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 import { z } from "zod";
 
 import { procedure, router } from "../trpc";
@@ -77,12 +78,27 @@ export const checklistRouter = router({
   deleteCompletedTasks: procedure.input(z.object({
     checklistId: z.string(),
   })).mutation(async (opts) => {
-    await prisma.task.deleteMany({
+    const tasksPromise = prisma.task.findMany({ where: { taskListId: opts.input.checklistId }, select: { id: true, completed: true, } });
+
+    const deleteTasksPromise = prisma.task.deleteMany({
       where: {
         taskListId: opts.input.checklistId,
         completed: true,
       }
     });
+
+    const [tasks] = await Promise.all([tasksPromise, deleteTasksPromise]);
+
+    const updatedTaskList = R.filter((task) => task.completed === false, tasks).map(task => task.id);
+
+    await prisma.checklist.update({
+      where: { id: opts.input.checklistId },
+      data: {
+        taskOrder: {
+          set: updatedTaskList
+        }
+      }
+    },)
   }),
   deleteTaskById: procedure.input(z.object({
     checklistId: z.string(),
