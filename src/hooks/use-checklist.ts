@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 
 import * as cl from '@/lib/checklist/index';
 
@@ -17,37 +17,31 @@ interface UseChecklistActions {
 
 function useChecklist(
   initialState: cl.Checklist
-): [cl.Checklist, UseChecklistActions] {
+): [cl.Checklist, UseChecklistActions, Dispatch<SetStateAction<cl.Checklist>>] {
   const [checklist, setChecklist] = useState<cl.Checklist>(initialState);
 
   const addTask = useCallback(
-    (...args: Parameters<typeof cl.addTask>) =>
-      { setChecklist(cl.addTask(...args)); },
+    (...args: Parameters<typeof cl.addTask>) => { setChecklist(cl.addTask(...args)); },
     []
   );
   const deleteCompletedTasks = useCallback(
-    (...args: Parameters<typeof cl.deleteCompletedTasks>) =>
-      { setChecklist(cl.deleteCompletedTasks(...args)); },
+    (...args: Parameters<typeof cl.deleteCompletedTasks>) => { setChecklist(cl.deleteCompletedTasks(...args)); },
     []
   );
   const deleteTask = useCallback(
-    (...args: Parameters<typeof cl.deleteTask>) =>
-      { setChecklist(cl.deleteTask(...args)); },
+    (...args: Parameters<typeof cl.deleteTask>) => { setChecklist(cl.deleteTask(...args)); },
     []
   );
   const moveTask = useCallback(
-    (...args: Parameters<typeof cl.moveTask>) =>
-      { setChecklist(cl.moveTask(...args)); },
+    (...args: Parameters<typeof cl.moveTask>) => { setChecklist(cl.moveTask(...args)); },
     []
   );
   const updateTask = useCallback(
-    (...args: Parameters<typeof cl.updateTask>) =>
-      { setChecklist(cl.updateTask(...args)); },
+    (...args: Parameters<typeof cl.updateTask>) => { setChecklist(cl.updateTask(...args)); },
     []
   );
   const toggleTaskCompletion = useCallback(
-    (...args: Parameters<typeof cl.toggleTaskCompletion>) =>
-      { setChecklist(cl.toggleTaskCompletion(...args)); },
+    (...args: Parameters<typeof cl.toggleTaskCompletion>) => { setChecklist(cl.toggleTaskCompletion(...args)); },
     []
   );
 
@@ -61,6 +55,7 @@ function useChecklist(
       toggleTaskCompletion,
       updateTask,
     },
+    setChecklist,
   ];
 }
 

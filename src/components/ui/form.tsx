@@ -59,6 +59,7 @@ const FormItemContext = React.createContext<FormItemContextValue>(
 
 const useFormField = (): FormFieldState => {
   const fieldContext = React.useContext(FormFieldContext)
+
   const itemContext = React.useContext(FormItemContext)
   const { getFieldState, formState } = useFormContext()
 

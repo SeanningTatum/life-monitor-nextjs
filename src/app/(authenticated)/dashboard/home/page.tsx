@@ -7,12 +7,12 @@ import { serverRouter } from "@/server";
 export default async function HomePage(): Promise<JSX.Element> {
   const session = await redirectIfUnauthenticated();
 
-  // TEMP:- Get first task as we don't have any feature to create a new task list
-  // or shift through them
-  let [checklist] = await serverRouter.getChecklistCollection({ userId: session.user.id }) ?? [];
+  // Fetch first checklist
+  // TODO:- Use the spread parameter to toggle between the checklists
+  let [checklist] = await serverRouter.checklist.getChecklistCollection({ userId: session.user.id }) ?? [];
 
   if (!checklist) {
-    checklist = await serverRouter.createChecklist({ userId: session.user.id });
+    checklist = await serverRouter.checklist.createChecklist({ userId: session.user.id });
   }
 
   return (

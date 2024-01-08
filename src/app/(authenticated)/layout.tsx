@@ -1,6 +1,7 @@
 import { type PropsWithChildren } from 'react'
 import { type Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
+import { Toaster } from 'sonner'
 
 import { DashboardNav } from './components/dashboard-nav'
 
@@ -56,6 +57,7 @@ function DashboardLayout({
                 <main className="container px-10 py-10 flex-1 flex">
                   {children}
                 </main>
+                <Toaster />
               </div>
             </TrpcProvider>
           </NextAuthProvider>
