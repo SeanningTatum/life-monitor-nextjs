@@ -20,14 +20,11 @@ const addTask = R.curry((newTask: Task, checklist: Checklist) =>
   })
 )
 
-const deleteTask = R.curry((taskId: string) =>
-  R.when<Checklist, Checklist>(
-    R.hasPath(['tasks', taskId]),
-    produce((draft) => {
-      draft.tasks = R.omit([taskId], draft.tasks)
-      draft.taskOrder = R.filter((id: string) => id !== taskId, draft.taskOrder)
-    })
-  )
+const deleteTask = R.curry((taskId: string, checklist: Checklist) =>
+  produce(checklist, (draft) => {
+    draft.tasks = R.omit([taskId], draft.tasks)
+    draft.taskOrder = R.filter((id: string) => id !== taskId, draft.taskOrder)
+  })
 )
 
 const updateTask = R.curry(
@@ -61,7 +58,7 @@ const toggleTaskCompletion = R.curry(
         completed: !kanbanBoard.tasks[taskId].completed
       },
       kanbanBoard
-    ) 
+    )
 )
 
 export {
@@ -73,4 +70,4 @@ export {
   updateTask
 }
 
-export type {Checklist, Task}
+export type { Checklist, Task }
