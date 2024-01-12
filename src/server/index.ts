@@ -1,5 +1,5 @@
-import { createCallerFactory, router } from './trpc';
-import { checklistRouter } from './routers/checklist';
+import { createCallerFactory, router } from "./trpc";
+import { checklistRouter } from "./routers/checklist";
 
 export const appRouter = router({
   checklist: checklistRouter,
