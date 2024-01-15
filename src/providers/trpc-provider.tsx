@@ -6,12 +6,27 @@ import { httpBatchLink } from "@trpc/client";
 
 import { trpc } from "@/lib/trpc";
 
+function getBaseUrl(): string {
+  // Production
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV) {
+    return `https://life-monitor-nextjs.vercel.app`;
+  }
+
+  // Development
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  }
+
+  // assume localhost
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+}
+
 export function TrpcProvider({ children }: PropsWithChildren): JSX.Element {
   const [queryClient] = useState(() => new QueryClient({}))
   const [trpcClient] = useState(() => trpc.createClient({
     links: [
       httpBatchLink({
-        url: 'http://localhost:3000/api/trpc'
+        url: `${getBaseUrl()}/api/trpc`
       })
     ]
   }));

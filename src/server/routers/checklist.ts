@@ -33,8 +33,6 @@ export const checklistRouter = router({
         },
       });
 
-      console.log(checklists);
-
       return checklists;
     }),
   getChecklistById: procedure.input(z.string()).query(async (opts) => {
