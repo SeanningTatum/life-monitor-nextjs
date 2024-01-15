@@ -30,11 +30,27 @@ const deleteTask = R.curry((taskId: string, checklist: Checklist) =>
 const updateTask = R.curry(
   (
     taskId: string,
-    updatedTask: Partial<Omit<Task, 'id'>>,
+    taskForm: Partial<Task>,
     checklist: Checklist
   ) =>
     produce(checklist, (draft) => {
-      draft.tasks[taskId] = R.mergeRight(draft.tasks[taskId], updatedTask)
+      const updatedTask = R.mergeRight(draft.tasks[taskId], taskForm)
+
+      if (updatedTask.id) {
+        draft.tasks = R.omit([taskId], draft.tasks)
+        draft.tasks[updatedTask.id] = updatedTask;
+        const ndx = R.findIndex((id) => id === taskId, checklist.taskOrder);
+        draft.taskOrder[ndx] = updatedTask.id
+
+        // const deleteAndAdd = R.pipe<[Checklist], Checklist, Checklist>(
+        //   deleteTask(taskId),
+        //   addTask(updatedTask),
+        // )
+        return;
+      }
+
+
+      draft.tasks[taskId] = updatedTask;
     })
 )
 

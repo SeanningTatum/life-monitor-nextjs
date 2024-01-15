@@ -77,19 +77,39 @@ describe('checklist', () => {
     expect(updatedChecklist.tasks['task-1']).toBeUndefined()
   })
 
-  it('should updateTask', () => {
-    const updatedChecklist = updateTask(
-      'task-1',
-      { title: 'Updated' },
-      checklist
-    )
+  describe('updateTask()', () => {
+    it('should updateTask', () => {
+      const updatedChecklist = updateTask(
+        'task-1',
+        { title: 'Updated' },
+        checklist
+      )
 
-    expect(updatedChecklist.tasks['task-1']).toStrictEqual({
-      id: 'task-1',
-      title: 'Updated',
-      completed: false
+      expect(updatedChecklist.tasks['task-1']).toStrictEqual({
+        id: 'task-1',
+        title: 'Updated',
+        completed: false
+      })
+    })
+
+    it('should remove previous task if you update the id', () => {
+      const updatedChecklist = updateTask(
+        'task-1',
+        { id: 'updated-task-1', title: 'Updated' },
+        checklist
+      )
+
+      expect(updatedChecklist.tasks['task-1']).toBeUndefined();
+      expect(updatedChecklist.tasks['updated-task-1']).toStrictEqual({
+        id: 'updated-task-1',
+        title: 'Updated',
+        completed: false
+      })
     })
   })
+
+
+
 
   it('should delete completed tasks', () => {
     const checklistWithCompleted = {

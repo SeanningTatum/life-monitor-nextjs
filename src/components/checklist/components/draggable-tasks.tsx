@@ -10,13 +10,18 @@ import Task from './task';
 function DraggableTasks(): JSX.Element[] {
   const { checklist } = useChecklistState();
 
-  return checklist.taskOrder.map((taskId, index) => (
-    <Draggable key={taskId} draggableId={taskId} index={index}>
-      {(provided, snapshot) => (
-        <Task id={taskId} snapshot={snapshot} draggableProvided={provided} />
-      )}
-    </Draggable>
-  ));
+
+  return checklist.taskOrder.map((taskId, index) => {
+    const isOptimistic = checklist.tasks[taskId]?.optimistic;
+
+    return (
+      <Draggable key={taskId} draggableId={taskId} index={index} isDragDisabled={isOptimistic}>
+        {(provided, snapshot) => (
+          <Task id={taskId} snapshot={snapshot} draggableProvided={provided} />
+        )}
+      </Draggable>
+    )
+  });
 }
 
 export default DraggableTasks;

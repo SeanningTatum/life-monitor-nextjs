@@ -64,9 +64,11 @@ function UserChecklist(props: Props): JSX.Element {
   }
 
   async function onAddTask(title: string): Promise<void> {
-    const newTask = await addTaskToChecklist.mutateAsync({ checklistId: props.checklist.id, data: { title } })
+    const mockId = Date.now().toString();
+    actions.addTask({ id: mockId, title, completed: false, optimistic: true, })
 
-    actions.addTask(newTask)
+    const newTask = await addTaskToChecklist.mutateAsync({ checklistId: props.checklist.id, data: { title } })
+    actions.updateTask(mockId, { id: newTask.id, title, optimistic: false })
   }
 
   async function onDeleteCompletedTasks(): Promise<void> {

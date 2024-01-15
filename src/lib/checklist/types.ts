@@ -1,7 +1,9 @@
 interface Task {
-  readonly id: string
+  id: string
   title: string
   completed: boolean
+
+  optimistic?: boolean;
 }
 
 interface Checklist {
